@@ -1,5 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+/*Program to print
+      D
+     DE
+    DEN
+   DENI
+  DENIS
+ DENISH
+       */
 
 int main()
 {
