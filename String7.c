@@ -1,10 +1,10 @@
 #include <stdio.h>
-
+// WITHOUT USING THE STRING FUCNTIONS
 int main()
 {
     char name[] = "@Ne123pal456#";
     char name2[50];
-    int i;
+    int i = 0;
     int j = 0;
 
     for (i = 0; name[i] != '\0'; i++)
@@ -19,7 +19,7 @@ int main()
 
     name2[j] = '\0';
 
-    printf("Alphabets only: %s\n", name2);
+    printf("Alphabets are: %s\n", name2);
 
     return 0;
 }
