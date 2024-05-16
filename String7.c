@@ -4,9 +4,10 @@ int main()
 {
     char name[] = "@Ne123pal456#";
     char name2[50];
+    int i;
     int j = 0;
 
-    for (int i = 0; name[i] != '\0'; i++)
+    for (i = 0; name[i] != '\0'; i++)
     {
 
         if ((name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z'))
