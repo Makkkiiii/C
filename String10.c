@@ -5,10 +5,11 @@ int main()
 {
     char str[] = "Denish";
     int length = strlen(str);
+    int i, j;
 
-    for (int i = 0; i < length; i++)
+    for (i = 0; i < length; i++)
     {
-        for (int j = 0; j <= i; j++)
+        for (j = 0; j <= i; j++)
         {
             printf("%c", str[j]);
         }
