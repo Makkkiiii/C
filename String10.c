@@ -3,7 +3,7 @@
 
 int main()
 {
-    char str[] = "HELLO";
+    char str[] = "Denish";
     int length = strlen(str);
 
     for (int i = 0; i < length; i++)
