@@ -9,7 +9,16 @@ int main()
 
     for (i = 0; name[i] != '\0'; i++)
     {
-
+        // USING ISALPHA
+        /*
+        Algorithm
+        if(isalpha(name[i]))
+        {
+            name2[j] = name[i];
+            j++;
+        }
+        i++;
+        */
         if ((name[i] >= 'A' && name[i] <= 'Z') || (name[i] >= 'a' && name[i] <= 'z'))
         {
             name2[j] = name[i];
