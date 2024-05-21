@@ -2,7 +2,7 @@
 
 int main()
 {
-    int data[100], size, i, j;
+    int data[100], size, i, original, remainder, sum;
 
     printf("Enter number of elements: ");
     scanf("%d", &size);
@@ -13,24 +13,26 @@ int main()
         scanf("%d", &data[i]);
     }
 
-    for (i = 0; i < size - 1; ++i)
+    for (i = 0; i < size; i++)
     {
-        for (j = 0; j < size - i - 1; ++j)
+        original = data[i];
+        sum = 0;
+
+        while (original != 0)
         {
-            if (data[j] < data[j + 1])
-            {
-
-                int temp = data[j];
-                data[j] = data[j + 1];
-                data[j + 1] = temp;
-            }
+            remainder = original % 10;
+            sum += remainder * remainder * remainder;
+            original /= 10;
         }
-    }
 
-    printf("Sorted Array in Descending Order:\n");
-    for (i = 0; i < size; ++i)
-    {
-        printf("%d  ", data[i]);
+        if (data[i] == sum)
+        {
+            printf("%d is an Armstrong number\n", data[i]);
+        }
+        else
+        {
+            printf("%d is not an Armstrong number\n", data[i]);
+        }
     }
 
     return 0;
