@@ -1,24 +1,8 @@
 #include <stdio.h>
 
-void bubbleSort(int array[], int size)
-{
-    for (int step = 0; step < size - 1; ++step)
-    {
-        for (int i = 0; i < size - step - 1; ++i)
-        {
-            if (array[i] > array[i + 1])
-            {
-                int temp = array[i];
-                array[i] = array[i + 1];
-                array[i + 1] = temp;
-            }
-        }
-    }
-}
-
 int main()
 {
-    int data[100], size, i;
+    int data[100], size, i, j;
 
     printf("Enter number of elements: ");
     scanf("%d", &size);
@@ -29,7 +13,18 @@ int main()
         scanf("%d", &data[i]);
     }
 
-    bubbleSort(data, size);
+    for (i = 0; i < size - 1; ++i)
+    {
+        for (j = 0; j < size - i - 1; ++j)
+        {
+            if (data[j] > data[j + 1])
+            {
+                int temp = data[j];
+                data[j] = data[j + 1];
+                data[j + 1] = temp;
+            }
+        }
+    }
 
     printf("Sorted Array in Ascending Order:\n");
     for (i = 0; i < size; ++i)

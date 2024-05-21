@@ -2,26 +2,35 @@
 
 int main()
 {
-    int i, j, n = 3; // n is the number of rows in the upper half of the pattern
+    int data[100], size, i, j;
 
-    // Print the upper half of the pattern
-    for (i = 0; i < n; i++)
+    printf("Enter number of elements: ");
+    scanf("%d", &size);
+
+    printf("Enter elements: ");
+    for (i = 0; i < size; i++)
     {
-        for (j = 0; j < n - i; j++)
-            printf("  ");
-        for (j = 0; j < 2 * i + 1; j++)
-            printf("* ");
-        printf("\n");
+        scanf("%d", &data[i]);
     }
 
-    // Print the lower half of the pattern
-    for (i = n - 2; i >= 0; i--)
+    for (i = 0; i < size - 1; ++i)
     {
-        for (j = 0; j < n - i; j++)
-            printf("  ");
-        for (j = 0; j < 2 * i + 1; j++)
-            printf("* ");
-        printf("\n");
+        for (j = 0; j < size - i - 1; ++j)
+        {
+            if (data[j] < data[j + 1])
+            {
+
+                int temp = data[j];
+                data[j] = data[j + 1];
+                data[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("Sorted Array in Descending Order:\n");
+    for (i = 0; i < size; ++i)
+    {
+        printf("%d  ", data[i]);
     }
 
     return 0;
