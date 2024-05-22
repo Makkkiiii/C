@@ -1,39 +1,41 @@
 #include <stdio.h>
+#include <string.h>
+
+typedef struct
+{
+    char service[50];
+    char password[50];
+} PasswordEntry;
+
+PasswordEntry passwordDatabase[100];
+int dbSize = 0;
+
+void addPassword(char *service, char *password)
+{
+    strcpy(passwordDatabase[dbSize].service, service);
+    strcpy(passwordDatabase[dbSize].password, password);
+    dbSize++;
+}
+
+char *getPassword(char *service)
+{
+    for (int i = 0; i < dbSize; i++)
+    {
+        if (strcmp(passwordDatabase[i].service, service) == 0)
+        {
+            return passwordDatabase[i].password;
+        }
+    }
+    return NULL;
+}
 
 int main()
 {
-    int data[100], size, i, original, remainder, sum;
+    addPassword("email", "password123");
+    addPassword("bank", "123456");
 
-    printf("Enter number of elements: ");
-    scanf("%d", &size);
-
-    printf("Enter elements: ");
-    for (i = 0; i < size; i++)
-    {
-        scanf("%d", &data[i]);
-    }
-
-    for (i = 0; i < size; i++)
-    {
-        original = data[i];
-        sum = 0;
-
-        while (original != 0)
-        {
-            remainder = original % 10;
-            sum += remainder * remainder * remainder;
-            original /= 10;
-        }
-
-        if (data[i] == sum)
-        {
-            printf("%d is an Armstrong number\n", data[i]);
-        }
-        else
-        {
-            printf("%d is not an Armstrong number\n", data[i]);
-        }
-    }
+    printf("Email password: %s\n", getPassword("email"));
+    printf("Bank password: %s\n", getPassword("bank"));
 
     return 0;
 }
