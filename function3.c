@@ -15,3 +15,22 @@ int main()
 
     return 0;
 }
+
+/*
+Function without argument and without return type
+#include <stdio.h>
+void addition()
+{
+    int a, b, sum;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+    sum = a + b;
+    printf("The sum is %d\n", sum);
+}
+int main()
+{
+    addition();
+    return 0;
+}
+
+*/
