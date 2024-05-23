@@ -34,3 +34,23 @@ int main()
 }
 
 */
+
+/*
+Function without argument and with return type
+#include <stdio.h>
+int addition()
+{
+    int a, b, sum;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+    sum = a + b;
+    return sum;
+}
+int main()
+{
+    int c;
+    c = addition();
+    printf("\n Sum is %d",c);
+    return 0;
+}
+*/
