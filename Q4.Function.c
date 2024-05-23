@@ -7,7 +7,6 @@ int naturalsum(int n)
     {
         sum = sum + i;
     }
-    printf("The sum of natural numbers are: %d", sum);
 
     return sum;
 }
@@ -16,6 +15,7 @@ int main()
     int n;
     printf("Enter a number: ");
     scanf("%d", &n);
-    naturalsum(n);
+    int sum = naturalsum(n);
+    printf("The sum of natural numbers are: %d", sum);
     return 0;
 }
