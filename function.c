@@ -1,10 +1,11 @@
 #include <stdio.h>
-void myfunction()
+int addition(int a, int b)
 {
-    printf("1st Fucntion program");
+    int sum;
+    sum = a + b;
 }
 int main()
 {
-    myfunction();
+
     return 0;
 }
