@@ -28,14 +28,10 @@ int main()
         area = areaOfCircle();
         printf("The area of circle is: %.2f", area);
     }
-    else if (choice == 2)
+    else
     {
         area = areaofRectangle();
         printf("The area of rectangle is: %.2f", area);
-    }
-    else
-    {
-        printf("Invalid choice");
     }
     return 0;
 }
