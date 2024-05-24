@@ -1,6 +1,6 @@
 // FUNCTION TO CHECK WHETHER NUMBER IS PALINDROME OR NOT WITHOUT ARGUMENT AND WITHOUT RETURN TYPE
 #include <stdio.h>
-int checkPalindrome()
+void checkPalindrome()
 {
     int n, rev = 0, rem, ori;
     printf("Enter an integer: ");
@@ -16,8 +16,6 @@ int checkPalindrome()
         printf("%d is a palindrome.", ori);
     else
         printf("%d is not a palindrome.", ori);
-
-    return 0;
 }
 int main()
 {
