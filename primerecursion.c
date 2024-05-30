@@ -4,10 +4,11 @@ int isPrime(int n, int i)
 {
     if (n < 2)
         return 0;
-    if (i == 1)
+    else if (i == 1)
         return 1;
-    if (n % i == 0)
+    else if (n % i == 0)
         return 0;
+
     return isPrime(n, i - 1);
 }
 
@@ -18,11 +19,11 @@ int main()
     scanf("%d", &num);
     if (isPrime(num, num / 2))
     {
-        printf("%d is a prime number", num);
+        printf("Prime number", num);
     }
     else
     {
-        printf("%d is not a prime number", num);
+        printf("Not prime number", num);
     }
     return 0;
 }
