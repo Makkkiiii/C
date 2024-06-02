@@ -190,7 +190,7 @@ int main()
 
             encrypt(password, 3);
 
-            printf("Encrypted password: %s\n", password);
+            printf("Encrypted password: %s\n\n", password);
 
             if (file != NULL)
             {
