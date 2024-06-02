@@ -6,7 +6,7 @@ int main()
     p = &a;
     for (int i = 0; i < 5; i++)
     {
-        printf("%d", *(p + i));
+        printf("\n%d", *(p + i));
     }
 
     return 0;
