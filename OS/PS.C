@@ -31,7 +31,7 @@ int main()
     printf("Choose priority type:\n1. Lower number = Higher priority\n2. Higher number = Higher priority\n");
     scanf("%d", &priority_type);
 
-    // Priority Scheduling
+    // ? Priority Scheduling Algorithm
     while (completed < n) // WILL RUN THE PROGRAM UNTIL ALL PROCESSES ARE COMPLETED
     {
         int selected_process = -1;
@@ -39,24 +39,32 @@ int main()
 
         if (priority_type == 1)
         {
-            best_priority = 1000000000; // very high number for "lowest" priority
+            // ! Dummy Value
+
+            best_priority = 1000000000; // Any number will be lower than this
         }
         else
         {
-            best_priority = -1; // very low number for "highest" priority
+            best_priority = -1; // Any number will be higher than this
         }
 
         for (i = 0; i < n; i++)
         {
+            // ! Skipping (Not arrived or Completed Process)
+
             if (arrival_time[i] > current_time || remaining_time[i] <= 0)
-                continue; // Skip if process hasn't arrived or is already completed
+                continue;
 
             int is_better = 0;
+
+            // ! Checking Better Priority
 
             if (priority_type == 1 && priority[i] < best_priority)
                 is_better = 1;
             else if (priority_type == 2 && priority[i] > best_priority)
                 is_better = 1;
+
+            // ! Storing the Best Process
 
             if (is_better)
             {
