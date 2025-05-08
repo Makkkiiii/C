@@ -111,14 +111,12 @@ int main()
         }
     }
 
-    // Display results
     printf("\nProcess\tArrival Time\tBurst Time\tPriority\tCompletion Time\tWaiting Time\tTurnaround Time\n");
     for (i = 0; i < n; i++)
     {
         printf("%d\t%12d\t%10d\t%8d\t%15d\t%12d\t%15d\n", i + 1, arrival_time[i], burst_time[i], priority[i], completion_time[i], waiting_time[i], turnaround_time[i]);
     }
 
-    // Display averages
     printf("\nAverage Waiting Time: %.2f\n", total_waiting_time / n);
     printf("Average Turnaround Time: %.2f\n", total_turnaround_time / n);
 
