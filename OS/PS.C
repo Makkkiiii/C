@@ -34,12 +34,14 @@ int main()
     // ? Priority Scheduling Algorithm
     while (completed < n) // WILL RUN THE PROGRAM UNTIL ALL PROCESSES ARE COMPLETED
     {
+        // ! Current Iteration
+
         int selected_process = -1;
         int best_priority;
 
         if (priority_type == 1)
         {
-            // ! Dummy Value
+            // ! Dummy Value;  if the process has actually arrived or not
 
             best_priority = 1000000000; // Any number will be lower than this
         }
@@ -47,6 +49,8 @@ int main()
         {
             best_priority = -1; // Any number will be higher than this
         }
+
+        // * Finding Process with Best Priority
 
         for (i = 0; i < n; i++)
         {
@@ -69,8 +73,10 @@ int main()
             if (is_better)
             {
                 best_priority = priority[i];
-                selected_process = i;
+                selected_process = i; // ! Updates current process with better priority
             }
+
+            // * No else condition cause it might overwrite the already selected *better process*
         }
 
         if (selected_process == -1)
