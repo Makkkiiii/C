@@ -50,7 +50,7 @@ int main()
 
         for (i = 0; i < n; i++)
         {
-            // ! Skipping (Not arrived or Completed Process)
+            // ! Skipping (Not arrived or Completed Process if not then sends to ready queue)
 
             if (arrival_time[i] > current_time || remaining_time[i] <= 0)
                 continue;
