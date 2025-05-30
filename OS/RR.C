@@ -1,80 +1,100 @@
 #include <stdio.h>
+#include <stdbool.h>
+
+#define MAX 100
 
 int main()
 {
-    int n, i, time = 0, completed = 0, tq;
+    int n, tq;
     printf("Enter the number of processes: ");
     scanf("%d", &n);
 
-    int arrival_time[n], burst_time[n], remaining_time[n], completion_time[n];
-    int waiting_time[n], turnaround_time[n];
+    int arrival_time[n], burst_time[n], remaining_time[n];
+    int completion_time[n], waiting_time[n], turnaround_time[n];
+    int queue[MAX], front = 0, rear = 0;
+    bool in_queue[n];
+
     float total_waiting_time = 0, total_turnaround_time = 0;
 
-    // Input arrival time and burst time
     printf("Enter the arrival time and burst time for each process:\n");
-    for (i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         printf("Process %d Arrival Time: ", i + 1);
         scanf("%d", &arrival_time[i]);
         printf("Process %d Burst Time: ", i + 1);
         scanf("%d", &burst_time[i]);
-        remaining_time[i] = burst_time[i]; // Initialize remaining time
+        remaining_time[i] = burst_time[i];
+        in_queue[i] = false;
     }
 
-    // Input time quantum
     printf("Enter the time quantum: ");
     scanf("%d", &tq);
 
-    // Round Robin Scheduling
+    int time = 0, completed = 0;
+    queue[rear++] = 0; // Push first process
+    in_queue[0] = true;
+
     while (completed < n)
     {
-        int done = 1; // Flag to check if all processes are completed
+        if (front == rear)
+            break; // No process to schedule
 
-        for (i = 0; i < n; i++)
+        int i = queue[front++]; // Pop from queue
+
+        if (remaining_time[i] > tq)
         {
-            if (remaining_time[i] > 0 && arrival_time[i] <= time)
-            {
-                done = 0; // At least one process is not completed
+            time += tq;
+            remaining_time[i] -= tq;
+        }
+        else
+        {
+            time += remaining_time[i];
+            remaining_time[i] = 0;
+            completion_time[i] = time;
+            turnaround_time[i] = completion_time[i] - arrival_time[i];
+            waiting_time[i] = turnaround_time[i] - burst_time[i];
+            total_waiting_time += waiting_time[i];
+            total_turnaround_time += turnaround_time[i];
+            completed++;
+        }
 
-                if (remaining_time[i] > tq)
-                {
-                    time += tq;
-                    remaining_time[i] -= tq;
-                }
-                else
-                {
-                    time += remaining_time[i];
-                    completion_time[i] = time;
-                    turnaround_time[i] = completion_time[i] - arrival_time[i];
-                    waiting_time[i] = turnaround_time[i] - burst_time[i];
-                    remaining_time[i] = 0;
-                    completed++;
-                }
+        // Enqueue processes that arrive during execution
+        for (int j = 0; j < n; j++)
+        {
+            if (!in_queue[j] && arrival_time[j] <= time && remaining_time[j] > 0)
+            {
+                queue[rear++] = j;
+                in_queue[j] = true;
             }
         }
 
-        if (done)
+        // Re-queue current process if it's not finished
+        if (remaining_time[i] > 0)
         {
-            // If no process is ready, increment time
-            time++;
+            queue[rear++] = i;
+        }
+
+        // If queue becomes empty, push the next available process
+        if (front == rear)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (remaining_time[j] > 0)
+                {
+                    queue[rear++] = j;
+                    in_queue[j] = true;
+                    break;
+                }
+            }
         }
     }
 
-    // Calculate total waiting and turnaround times
-    for (i = 0; i < n; i++)
+    printf("\nProcess\tArrival\tBurst\tCompletion\tWaiting\tTurnaround\n");
+    for (int i = 0; i < n; i++)
     {
-        total_waiting_time += waiting_time[i];
-        total_turnaround_time += turnaround_time[i];
+        printf("%d\t%d\t%d\t%d\t\t%d\t%d\n", i + 1, arrival_time[i], burst_time[i], completion_time[i], waiting_time[i], turnaround_time[i]);
     }
 
-    // Display results
-    printf("\nProcess\tArrival Time\tBurst Time\tCompletion Time\tWaiting Time\tTurnaround Time\n");
-    for (i = 0; i < n; i++)
-    {
-        printf("%d\t%12d\t%10d\t%15d\t%12d\t%15d\n", i + 1, arrival_time[i], burst_time[i], completion_time[i], waiting_time[i], turnaround_time[i]);
-    }
-
-    // Display averages
     printf("\nAverage Waiting Time: %.2f\n", total_waiting_time / n);
     printf("Average Turnaround Time: %.2f\n", total_turnaround_time / n);
 
