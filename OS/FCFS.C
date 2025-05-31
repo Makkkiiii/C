@@ -26,20 +26,20 @@ int main()
         scanf("%d", &burst_time[i]);
     }
 
-    // Non-Preemptive SJF Scheduling
+    // FCFS Scheduling
     while (completed < n)
     {
         int selected_process = -1;
-        int shortest_time = 1e9; // A large value to find the shortest burst time
+        int earliest_arrival = 1e9;
 
-        // Find the process with the shortest burst time that has arrived and is not completed
+        // Find the process with the earliest arrival time that is not completed
         for (i = 0; i < n; i++)
         {
             if (arrival_time[i] <= current_time && !is_completed[i])
             {
-                if (burst_time[i] < shortest_time)
+                if (arrival_time[i] < earliest_arrival)
                 {
-                    shortest_time = burst_time[i];
+                    earliest_arrival = arrival_time[i];
                     selected_process = i;
                 }
             }
@@ -47,12 +47,12 @@ int main()
 
         if (selected_process == -1)
         {
-            // If no process is ready, increment time
+            // If no process has arrived yet, increment time
             current_time++;
         }
         else
         {
-            // Execute the selected process until completion
+            // Execute the selected process
             current_time += burst_time[selected_process];
             completion_time[selected_process] = current_time;
             turnaround_time[selected_process] = completion_time[selected_process] - arrival_time[selected_process];

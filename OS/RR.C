@@ -74,7 +74,6 @@ int main()
             queue[rear++] = i;
         }
 
-        // If queue becomes empty, push the next available process
         if (front == rear)
         {
             for (int j = 0; j < n; j++)

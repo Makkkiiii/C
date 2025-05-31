@@ -20,7 +20,7 @@ int main()
         scanf("%d", &burst_time[i]);
         printf("Process %d Priority: ", i + 1);
         scanf("%d", &priority[i]);
-        remaining_time[i] = burst_time[i]; // Copying remaining time from burst time since nothing has been executed yet.
+        remaining_time[i] = burst_time[i];
     }
 
     // Ask user for scheduling type (preemptive or non-preemptive)
@@ -32,7 +32,7 @@ int main()
     scanf("%d", &priority_type);
 
     // ? Priority Scheduling Algorithm
-    while (completed < n) // WILL RUN THE PROGRAM UNTIL ALL PROCESSES ARE COMPLETED
+    while (completed < n)
     {
         // ! Current Iteration
 
