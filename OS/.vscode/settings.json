@@ -6,6 +6,7 @@
         "FCFS.C": "cpp",
         "PS.C": "cpp",
         "RR.C": "cpp",
-        "SJF.C": "cpp"
+        "SJF.C": "cpp",
+        "stdio.h": "c"
     }
 }
