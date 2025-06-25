@@ -8,7 +8,7 @@ void fifoPageReplacement(int pages[], int n, int capacity)
     int history[capacity][n];
     char result[n][5];
 
-    for (int i = 0; i < capacity; i++)
+    for (int i = 0; i < capacity; i++) // ! Initialize frames as empty
         frames[i] = -1;
 
     for (int i = 0; i < n; i++)
@@ -16,7 +16,7 @@ void fifoPageReplacement(int pages[], int n, int capacity)
         int page = pages[i];
         int found = 0;
 
-        for (int j = 0; j < capacity; j++)
+        for (int j = 0; j < capacity; j++) // ! Check if the page is already in the frames
         {
             if (frames[j] == page)
             {
@@ -29,7 +29,7 @@ void fifoPageReplacement(int pages[], int n, int capacity)
         if (!found)
         {
             frames[front] = page;
-            front = (front + 1) % capacity;
+            front = (front + 1) % capacity; // ! Moving frame to next frame
             pageFaults++;
             strcpy(result[i], "M");
         }
@@ -38,7 +38,7 @@ void fifoPageReplacement(int pages[], int n, int capacity)
             strcpy(result[i], "H");
         }
 
-        for (int j = 0; j < capacity; j++)
+        for (int j = 0; j < capacity; j++) // ! Storing current state of all frame
         {
             history[j][i] = frames[j];
         }
@@ -64,7 +64,7 @@ void fifoPageReplacement(int pages[], int n, int capacity)
             if (history[row][col] != -1)
                 printf("%5d", history[row][col]);
             else
-                printf("     ");
+                printf("     "); // ! Printing blank for empty frames
         }
         printf("\n");
     }
@@ -77,7 +77,7 @@ void fifoPageReplacement(int pages[], int n, int capacity)
         printf("%5s", result[i]);
     printf("\n");
 
-    double hitRate = ((double)hits / n) * 100.0;
+    double hitRate = ((double)hits / n) * 100.0; // ! For decimal Value of %
 
     printf("\nTotal Page Faults: %d\n", pageFaults);
     printf("Total Hits: %d\n", hits);
